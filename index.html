@@ -9,8 +9,8 @@
         :root {
             --primary: #00b894;
             --primary-dark: #00a085;
-            --text: #2d3436;
-            --gray: #7f8c8d;
+            --gray: #95a5a6;
+            --light: #f8f9fa;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
@@ -18,149 +18,151 @@
             background: linear-gradient(135deg, #a8e6cf, #dcedc1);
             min-height: 100vh;
             padding: 15px 8px;
-            color: var(--text);
-            direction: rtl;
-            text-align: right;
+            color: #2d3436;
         }
         .container {
-            max-width: 480px;
+            max-width: 500px;
             margin: 0 auto;
             background: white;
-            border-radius: 28px;
+            border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.22);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.25);
         }
         header {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             text-align: center;
-            padding: 42px 20px;
+            padding: 45px 20px;
         }
-        header h1 { font-size: 29px; margin-bottom: 8px; }
-        header p { font-size: 16.5px; opacity: 0.95; }
-        .version { font-size: 13.5px; opacity: 0.85; margin-top: 12px; }
+        header h1 { font-size: 30px; margin-bottom: 10px; }
+        header p { font-size: 17px; }
+        .version { font-size: 14px; opacity: 0.9; margin-top: 12px; }
 
-        .content { padding: 38px 32px; text-align: right; }
+        .content { padding: 40px 35px; }
 
+        /* کارت‌های انتخاب پمپ — خیلی قشنگ! */
+        .pump-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin: 25px 0 30px;
         }
-
-        select {
-            width: 100%;
-            padding: 18px;
-            border: 2px solid #eee;
-            border-radius: 18px;
-            font-size: 17px;
-            background: #f8f9fa;
-            margin-bottom: 18px;
-            text-align: right;
+        .pump-card {
+            background: white;
+            border: 3px solid #eee;
+            border-radius: 20px;
+            padding: 18px 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
         }
+        .pump-card.active {
+            border-color: var(--primary);
+            background: #e8f9f5;
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,184,148,0.3);
+        }
+        .pump-card h4 { font-size: 16px; margin-bottom: 6px; color: #2c3e50; }
+        .pump-card p { font-size: 13px; color: var(--gray); }
+        .pump-card.active h4 { color: var(--primary-dark); font-weight: bold; }
 
         .pump-info {
-            background: #f0f8ff;
-            padding: 20px;
-            border-radius: 18px;
-            margin: 22px 0;
-            font-size: 15.8px;
+            background: linear-gradient(135deg, #f0f8ff, #e3f9f5);
+            padding: 22px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 16px;
             line-height: 1.9;
             border-right: 7px solid var(--primary);
-            text-align: right;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
         }
 
         label {
             font-weight: 700;
-            font-size: 17.5px;
-            margin-bottom: 14px;
+            font-size: 18px;
+            margin: 20px 0 14px;
             display: block;
             color: #2c3e50;
         }
 
         input[type="range"] {
             width: 100%;
-            height: 15px;
+            height: 16px;
             border-radius: 12px;
             background: #ddd;
             outline: none;
             -webkit-appearance: none;
-            margin: 18px 0;
+            margin: 20px 0;
         }
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: var(--primary);
-            cursor: pointer;
-            box-shadow: 0 6px 18px rgba(0,184,148,0.5);
+            box-shadow: 0 6px 20px rgba(0,184,148,0.5);
         }
 
         .value-display {
             text-align: center;
-            font-size: 40px;
+            font-size: 42px;
             font-weight: bold;
             color: var(--primary-dark);
-            margin: 12px 0;
+            margin: 10px 0;
         }
 
         .time-picker {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 35px;
-            margin: 40px 0;
+            gap: 40px;
+            margin: 45px 0;
         }
         .time-box span {
-            font-size: 62px;
+            font-size: 66px;
             font-weight: bold;
             color: var(--primary-dark);
-            line-height: 1;
         }
-        .time-box small {
-            color: var(--gray);
-            font-size: 15px;
-            display: block;
-            margin-top: 5px;
-        }
+        .time-box small { color: var(--gray); font-size: 16px; }
 
         button {
             width: 100%;
-            padding: 22px;
+            padding: 24px;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             border: none;
-            border-radius: 22px;
-            font-size: 22px;
+            border-radius: 24px;
+            font-size: 23px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 12px 35px rgba(0,184,148,0.45);
+            box-shadow: 0 15px 40px rgba(0,184,148,0.5);
             transition: 0.3s;
         }
-        button:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 18px 40px rgba(0,184,148,0.55);
-        }
+        button:hover { transform: translateY(-8px); }
 
         #result {
             margin-top: 35px;
-            padding: 30px;
+            padding: 32px;
             background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-            border-radius: 22px;
-            font-size: 21.5px;
+            border-radius: 24px;
             text-align: center;
-            border: 4px solid var(--primary);
+            border: 5px solid var(--primary);
+            font-size: 22px;
+            line-height: 2.4;
             display: none;
-            line-height: 2.3;
         }
 
         footer {
             text-align: center;
-            padding: 38px 20px;
+            padding: 40px 20px;
             background: #2d3436;
             color: #bdc3c7;
-            font-size: 15.5px;
+            font-size: 16px;
         }
         footer a { color: #00b894; text-decoration: none; font-weight: bold; }
-        .heart { color: #e74c3c; font-size: 23px; animation: beat 1.6s infinite; }
-        @keyframes beat { 0%,100% { transform: scale(1); } 50% { transform: scale(1.35); } }
+        .heart { color: #e74c3c; font-size: 24px; animation: beat 1.6s infinite; }
+        @keyframes beat { 0%,100% { transform: scale(1); } 50% { transform: scale(1.4); } }
     </style>
 </head>
 <body>
@@ -174,25 +176,36 @@
 
     <div class="content">
 
-        <label for="pumpModel">پمپ شما کدام است؟</label>
-        <select id="pumpModel" onchange="updatePumpInfo()">
-            <option value="" disabled selected>یک پمپ انتخاب کنید</option>
-            <option value="thalapump">Thalapump 20 Micrel (فعال)</option>
-            <option value="farafan">فرافن (Farafan) - به زودی</option>
-            <option value="medis">مدیس (Medis) - به زودی</option>
-            <option value="crono">Crono - به زودی</option>
-            <option value="cadd">CADD-Legacy - به زودی</option>
-        </select>
-
-        <div class="pump-info" id="pumpInfo">
-            لطفاً ابتدا پمپ خود را انتخاب کنید تا راهنمایی دقیق نمایش داده شود.
+        <label>پمپ خود را انتخاب کنید</label>
+        <div class="pump-grid">
+            <div class="pump-card active" data-pump="thalapump">
+                <h4>Thalapump 20</h4>
+                <p>Micrel<br><strong>فعال</strong></p>
+            </div>
+            <div class="pump-card" data-pump="farafan">
+                <h4>فرافن</h4>
+                <p>Farafan<br><small>به زودی</small></p>
+            </div>
+            <div class="pump-card" data-pump="medis">
+                <h4>مدیس</h4>
+                <p>Medis<br><small>به زودی</small></p>
+            </div>
+            <div class="pump-card" data-pump="crono">
+                <h4>Crono</h4>
+                <p><small>به زودی</small></p>
+            </div>
         </div>
 
-        <label>سرعت پمپ (عدد صحیح ۳ تا ۱۵)</label>
+        <div class="pump-info" id="pumpInfo">
+            عالی! پمپ Thalapump 20 Micrel<br>
+با خط‌کش کنار دستگاه، طول دارو را اندازه بگیرید (مثلاً ۷۵ mm) و سرعت را بین ۳ تا ۱۵ (عدد صحیح) تنظیم کنید.
+        </div>
+
+        <label>سرعت پمپ (عدد صحیح)</label>
         <input type="range" id="speed" min="3" max="15" step="1" value="6">
         <div class="value-display"><span id="speedValue">۶</span> mm/h</div>
 
-        <label>طول دارو در سرنگ (میلی‌متر)</label>
+        <label>طول دارو در سرنگ (mm)</label>
         <input type="range" id="length" min="50" max="100" step="1" value="75">
         <div class="value-display"><span id="lengthValue">۷۵</span> mm</div>
 
@@ -202,7 +215,7 @@
                 <span id="hourDisplay">۲۲</span>
                 <small>ساعت</small>
             </div>
-            <div style="font-size:62px;color:#95a5a6;">:</div>
+            <div style="font-size:66px;color:#95a5a6;">:</div>
             <div class="time-box">
                 <span id="minuteDisplay">۰۰</span>
                 <small>دقیقه</small>
@@ -211,22 +224,27 @@
         <input type="range" id="hourSlider" min="0" max="23" value="22">
         <input type="range" id="minuteSlider" min="0" max="55" step="5" value="0">
 
-        <button onclick="calculate()">محاسبه زمان پایان تزریق</button>
+        <button onclick="calculate()">محاسبه زمان پایان</button>
 
         <div id="result"></div>
     </div>
 
-    >
-
     <footer>
         ساخته شده با <span class="heart">♥</span> توسط <strong>حسین حوت گنج‌آبادی</strong><br><br>
-        <a href="https://wa.me/989031375909" target="_blank">
-            پیام در واتساپ: ۰۹۰۳-۱۳۷-۵۹۰۹
-        </a>
+        <a href="https://wa.me/989031375909" target="_blank">واتساپ: ۰۹۰۳-۱۳۷-۵۹۰۹</a>
     </footer>
 </div>
 
 <script>
+    // کارت‌های پمپ
+    document.querySelectorAll('.pump-card').forEach(card => {
+        card.addEventListener('click', function() {
+            document.querySelectorAll('.pump-card').forEach(c => c.classList.remove('active'));
+            this.classList.add('active');
+            updatePumpInfo(this.dataset.pump);
+        });
+    });
+
     function updateValues() {
         document.getElementById('speedValue').textContent = document.getElementById('speed').value;
         document.getElementById('lengthValue').textContent = document.getElementById('length').value;
@@ -234,16 +252,14 @@
         document.getElementById('minuteDisplay').textContent = document.getElementById('minuteSlider').value.padStart(2, '0');
     }
 
-    function updatePumpInfo() {
+    function updatePumpInfo(pump) {
         const infos = {
-            thalapump: "عالی! پمپ Thalapump 20 Micrel<br>با خط‌کش کنار دستگاه، طول دارو را اندازه بگیرید (مثلاً ۷۵ mm) و سرعت را بین ۳ تا ۱۵ (عدد صحیح) تنظیم کنید.",
+            thalapump: "عالی! پمپ Thalapump 20 Micrel<br>با خط‌کش کنار دستگاه، طول دارو را اندازه بگیرید و سرعت را بین ۳ تا ۱۵ تنظیم کنید.",
             farafan: "پمپ فرافن هم دقیقاً مثل تالاپمپ با خط‌کش و واحد mm/h کار می‌کند. به زودی فعال می‌شود",
-            medis: "پمپ مدیس نیز با خط‌کش کنار دستگاه و واحد mm/h است. به زودی پشتیبانی کامل اضافه می‌شود",
-            crono: "پمپ Crono با واحد ml/h کار می‌کند و نیاز به حجم دارو دارد. به زودی فعال می‌شود",
-            cadd: "پمپ CADD-Legacy تنظیمات پیشرفته‌تری دارد. به زودی اضافه می‌شود"
+            medis: "پمپ مدیس نیز با خط‌کش کنار دستگاه و واحد mm/h است. به زودی فعال می‌شود",
+            crono: "پمپ Crono با واحد ml/h کار می‌کند. به زودی فعال می‌شود"
         };
-        const selected = document.getElementById('pumpModel').value;
-        document.getElementById('pumpInfo').innerHTML = infos[selected] || "لطفاً ابتدا پمپ را انتخاب کنید تا راهنمایی دقیق ببینید.";
+        document.getElementById('pumpInfo').innerHTML = infos[pump] || infos.thalapump;
     }
 
     function calculate() {
@@ -252,20 +268,12 @@
         const h = parseInt(document.getElementById('hourSlider').value);
         const m = parseInt(document.getElementById('minuteSlider').value);
 
-        if (!speed || !length) {
-            alert("لطفاً سرعت و طول را تنظیم کنید");
-            return;
-        }
-
-        const durationHours = length / speed;
-        const totalMin = Math.round(durationHours * 60);
+        const totalMin = Math.round((length / speed) * 60);
         const hours = Math.floor(totalMin / 60);
         const minutes = totalMin % 60;
 
-        let endH = h + hours;
-        let endM = m + minutes;
-        if (endM >= 60) { endH++; endM -= 60; }
-        endH %= 24;
+        let endH = (h + hours + Math.floor((m + minutes) / 60)) % 24;
+        let endM = (m + minutes) % 60;
 
         const period = endH < 12 ? 'صبح' : 'عصر';
         const displayH = endH % 12 || 12;
@@ -273,19 +281,15 @@
         document.getElementById('result').style.display = 'block';
         document.getElementById('result').innerHTML = `
             <strong>زمان کل تزریق:</strong><br>
-            <span style="font-size:34px;color:#00b894;">${hours} ساعت و ${minutes.toString().padStart(2,'0')} دقیقه</span><br><br>
-            <strong>تقریباً تمام می‌شود ساعت:</strong><br>
-            <span style="font-size:48px;color:#e67e22;font-weight:bold;">${displayH}:${endM.toString().padStart(2,'0')}</span> ${period}
+            <span style="font-size:36px;color:#00b894;">${hours} ساعت و ${minutes.toString().padStart(2,'0')} دقیقه</span><br><br>
+            <strong>تقریباً تمام می‌شود:</strong><br>
+            <span style="font-size:52px;color:#e67e22;font-weight:bold;">${displayH}:${endM.toString().padStart(2,'0')}</span> ${period}
         `;
     }
 
-    // راه‌اندازی اولیه — بدون عدد پیش‌فرض در نمایش (ولی اسلایدرها مقدار دارن برای راحتی)
-    document.querySelectorAll('input[type=range]').forEach(slider => {
-        slider.addEventListener('input', updateValues);
-    });
+    // راه‌اندازی اولیه
+    document.querySelectorAll('input[type=range]').forEach(s => s.addEventListener('input', updateValues));
     updateValues();
-    updatePumpInfo();
 </script>
-
 </body>
 </html>
