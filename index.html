@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl>
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>محاسبه‌گر پمپ دسفرال | نسخه ۱.۳</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #00b894;
             --primary-dark: #00a085;
             --text: #2d3436;
-            --gray: #636e72;
+            --gray: #7f8c8d;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
             font-family: 'Vazirmatn', Tahoma, sans-serif;
             background: linear-gradient(135deg, #a8e6cf, #dcedc1);
             min-height: 100vh;
-            padding: 15px 10px;
+            padding: 15px 8px;
             color: var(--text);
+            direction: rtl;
+            text-align: right;
         }
         .container {
             max-width: 480px;
@@ -27,19 +28,21 @@
             background: white;
             border-radius: 28px;
             overflow: hidden;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.22);
         }
         header {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             text-align: center;
-            padding: 40px 20px;
+            padding: 42px 20px;
         }
-        header h1 { font-size: 28px; margin-bottom: 8px; }
-        header p { font-size: 16px; opacity: 0.95; }
-        .version { font-size: 13px; opacity: 0.8; margin-top: 10px; }
+        header h1 { font-size: 29px; margin-bottom: 8px; }
+        header p { font-size: 16.5px; opacity: 0.95; }
+        .version { font-size: 13.5px; opacity: 0.85; margin-top: 12px; }
 
-        .content { padding: 35px 30px; }
+        .content { padding: 38px 32px; text-align: right; }
+
+        }
 
         select {
             width: 100%;
@@ -48,110 +51,116 @@
             border-radius: 18px;
             font-size: 17px;
             background: #f8f9fa;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
+            text-align: right;
         }
 
         .pump-info {
             background: #f0f8ff;
-            padding: 18px;
-            border-radius: 16px;
-            margin: 20px 0;
-            font-size: 15.5px;
-            line-height: 1.8;
-            border-right: 6px solid var(--primary);
+            padding: 20px;
+            border-radius: 18px;
+            margin: 22px 0;
+            font-size: 15.8px;
+            line-height: 1.9;
+            border-right: 7px solid var(--primary);
+            text-align: right;
         }
 
         label {
             font-weight: 700;
-            font-size: 17px;
-            margin-bottom: 12px;
+            font-size: 17.5px;
+            margin-bottom: 14px;
             display: block;
             color: #2c3e50;
         }
 
         input[type="range"] {
             width: 100%;
-            height: 14px;
-            border-radius: 10px;
+            height: 15px;
+            border-radius: 12px;
             background: #ddd;
             outline: none;
             -webkit-appearance: none;
-            margin: 15px 0;
+            margin: 18px 0;
         }
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             background: var(--primary);
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,184,148,0.5);
+            box-shadow: 0 6px 18px rgba(0,184,148,0.5);
         }
 
         .value-display {
             text-align: center;
-            font-size: 38px;
+            font-size: 40px;
             font-weight: bold;
             color: var(--primary-dark);
-            margin: 10px 0;
+            margin: 12px 0;
         }
 
         .time-picker {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 30px;
-            margin: 35px 0;
+            gap: 35px;
+            margin: 40px 0;
         }
         .time-box span {
-            font-size: 60px;
+            font-size: 62px;
             font-weight: bold;
             color: var(--primary-dark);
+            line-height: 1;
         }
         .time-box small {
             color: var(--gray);
             font-size: 15px;
+            display: block;
+            margin-top: 5px;
         }
 
         button {
             width: 100%;
-            padding: 20px;
+            padding: 22px;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             border: none;
-            border-radius: 20px;
-            font-size: 21px;
+            border-radius: 22px;
+            font-size: 22px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,184,148,0.4);
+            box-shadow: 0 12px 35px rgba(0,184,148,0.45);
             transition: 0.3s;
         }
         button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,184,148,0.5);
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(0,184,148,0.55);
         }
 
         #result {
-            margin-top: 30px;
-            padding: 28px;
+            margin-top: 35px;
+            padding: 30px;
             background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-            border-radius: 20px;
-            font-size: 21px;
+            border-radius: 22px;
+            font-size: 21.5px;
             text-align: center;
             border: 4px solid var(--primary);
             display: none;
+            line-height: 2.3;
         }
 
         footer {
             text-align: center;
-            padding: 35px 20px;
+            padding: 38px 20px;
             background: #2d3436;
             color: #bdc3c7;
-            font-size: 15px;
+            font-size: 15.5px;
         }
         footer a { color: #00b894; text-decoration: none; font-weight: bold; }
-        .heart { color: #e74c3c; font-size: 22px; animation: beat 1.5s infinite; }
-        @keyframes beat { 0%,100% { transform: scale(1); } 50% { transform: scale(1.3); } }
+        .heart { color: #e74c3c; font-size: 23px; animation: beat 1.6s infinite; }
+        @keyframes beat { 0%,100% { transform: scale(1); } 50% { transform: scale(1.35); } }
     </style>
 </head>
 <body>
@@ -159,14 +168,15 @@
 <div class="container">
     <header>
         <h1>محاسبه‌گر پمپ دسفرال</h1>
-        <p>زمان دقیق تموم شدن تزریق برای همه پمپ‌ها</p>
+        <p>زمان دقیق تموم شدن تزریق رو بدون!</p>
         <div class="version">نسخه ۱.۳ — ۱۴ آذر ۱۴۰۴</div>
     </header>
 
     <div class="content">
 
-        <label>پمپ شما کدام است؟</label>
+        <label for="pumpModel">پمپ شما کدام است؟</label>
         <select id="pumpModel" onchange="updatePumpInfo()">
+            <option value="" disabled selected>یک پمپ انتخاب کنید</option>
             <option value="thalapump">Thalapump 20 Micrel (فعال)</option>
             <option value="farafan">فرافن (Farafan) - به زودی</option>
             <option value="medis">مدیس (Medis) - به زودی</option>
@@ -175,16 +185,15 @@
         </select>
 
         <div class="pump-info" id="pumpInfo">
-            پمپ Thalapump 20 Micrel بر اساس میلی‌متر در ساعت (mm/h) کار می‌کند.<br>
-            کنار پمپ یک خط‌کش دقیق دارد. طول دارو در سرنگ را با آن اندازه بگیرید و سرعت را بین ۳ تا ۱۵ (عدد صحیح) تنظیم کنید.
+            لطفاً ابتدا پمپ خود را انتخاب کنید تا راهنمایی دقیق نمایش داده شود.
         </div>
 
-        <label>سرعت پمپ (عدد صحیح)</label>
-        <input type="range" id="speed" min="3" max="15" step="1" value="6" oninput="updateValues()">
+        <label>سرعت پمپ (عدد صحیح ۳ تا ۱۵)</label>
+        <input type="range" id="speed" min="3" max="15" step="1" value="6">
         <div class="value-display"><span id="speedValue">۶</span> mm/h</div>
 
         <label>طول دارو در سرنگ (میلی‌متر)</label>
-        <input type="range" id="length" min="50" max="100" step="1" value="75" oninput="updateValues()">
+        <input type="range" id="length" min="50" max="100" step="1" value="75">
         <div class="value-display"><span id="lengthValue">۷۵</span> mm</div>
 
         <label>زمان شروع تزریق</label>
@@ -193,19 +202,21 @@
                 <span id="hourDisplay">۲۲</span>
                 <small>ساعت</small>
             </div>
-            <div style="font-size:60px;color:#95a5a6;">:</div>
+            <div style="font-size:62px;color:#95a5a6;">:</div>
             <div class="time-box">
                 <span id="minuteDisplay">۰۰</span>
                 <small>دقیقه</small>
             </div>
         </div>
-        <input type="range" id="hourSlider" min="0" max="23" value="22" oninput="updateValues()">
-        <input type="range" id="minuteSlider" min="0" max="55" step="5" value="0" oninput="updateValues()">
+        <input type="range" id="hourSlider" min="0" max="23" value="22">
+        <input type="range" id="minuteSlider" min="0" max="55" step="5" value="0">
 
-        <button onclick="calculate()">محاسبه زمان پایان</button>
+        <button onclick="calculate()">محاسبه زمان پایان تزریق</button>
 
         <div id="result"></div>
     </div>
+
+    >
 
     <footer>
         ساخته شده با <span class="heart">♥</span> توسط <strong>حسین حوت گنج‌آبادی</strong><br><br>
@@ -225,13 +236,14 @@
 
     function updatePumpInfo() {
         const infos = {
-            thalapump: "پمپ Thalapump 20 Micrel بر اساس میلی‌متر در ساعت (mm/h) کار می‌کند.<br>کنار پمپ یک خط‌کش دقیق دارد. طول دارو در سرنگ را با آن اندازه بگیرید و سرعت را بین ۳ تا ۳ تا ۱۵ (عدد صحیح) تنظیم کنید.",
-            farafan: "پمپ فرافن هم دقیقاً مثل تالاپمپ با خط‌کش کنار دستگاه و واحد mm/h کار می‌کند. به زودی فعال می‌شود.",
-            medis: "پمپ مدیس نیز بر اساس میلی‌متر در ساعت و خط‌کش کنار دستگاه کار می‌کند. به زودی فعال خواهد شد.",
-            crono: "پمپ Crono با واحد ml/h کار می‌کند و نیاز به محاسبه حجم دارو دارد. به زودی فعال می‌شود.",
-            cadd: "پمپ CADD-Legacy دارای تنظیمات پیشرفته است. به زودی پشتیبانی کامل اضافه می‌شود."
+            thalapump: "عالی! پمپ Thalapump 20 Micrel<br>با خط‌کش کنار دستگاه، طول دارو را اندازه بگیرید (مثلاً ۷۵ mm) و سرعت را بین ۳ تا ۱۵ (عدد صحیح) تنظیم کنید.",
+            farafan: "پمپ فرافن هم دقیقاً مثل تالاپمپ با خط‌کش و واحد mm/h کار می‌کند. به زودی فعال می‌شود",
+            medis: "پمپ مدیس نیز با خط‌کش کنار دستگاه و واحد mm/h است. به زودی پشتیبانی کامل اضافه می‌شود",
+            crono: "پمپ Crono با واحد ml/h کار می‌کند و نیاز به حجم دارو دارد. به زودی فعال می‌شود",
+            cadd: "پمپ CADD-Legacy تنظیمات پیشرفته‌تری دارد. به زودی اضافه می‌شود"
         };
-        document.getElementById('pumpInfo').innerHTML = infos[document.getElementById('pumpModel').value];
+        const selected = document.getElementById('pumpModel').value;
+        document.getElementById('pumpInfo').innerHTML = infos[selected] || "لطفاً ابتدا پمپ را انتخاب کنید تا راهنمایی دقیق ببینید.";
     }
 
     function calculate() {
@@ -239,6 +251,11 @@
         const length = parseInt(document.getElementById('length').value);
         const h = parseInt(document.getElementById('hourSlider').value);
         const m = parseInt(document.getElementById('minuteSlider').value);
+
+        if (!speed || !length) {
+            alert("لطفاً سرعت و طول را تنظیم کنید");
+            return;
+        }
 
         const durationHours = length / speed;
         const totalMin = Math.round(durationHours * 60);
@@ -255,17 +272,19 @@
 
         document.getElementById('result').style.display = 'block';
         document.getElementById('result').innerHTML = `
-            <strong>زمان تزریق:</strong><br>
-            <span style="font-size:32px;color:#00b894;">${hours} ساعت و ${minutes.toString().padStart(2,'0')} دقیقه</span><br><br>
-            <strong>تقریباً تمام می‌شود:</strong><br>
-            ساعت <span style="font-size:42px;color:#e67e22;font-weight:bold;">${displayH}:${endM.toString().padStart(2,'0')}</span> ${period}
+            <strong>زمان کل تزریق:</strong><br>
+            <span style="font-size:34px;color:#00b894;">${hours} ساعت و ${minutes.toString().padStart(2,'0')} دقیقه</span><br><br>
+            <strong>تقریباً تمام می‌شود ساعت:</strong><br>
+            <span style="font-size:48px;color:#e67e22;font-weight:bold;">${displayH}:${endM.toString().padStart(2,'0')}</span> ${period}
         `;
     }
 
-    // راه‌اندازی اولیه
+    // راه‌اندازی اولیه — بدون عدد پیش‌فرض در نمایش (ولی اسلایدرها مقدار دارن برای راحتی)
+    document.querySelectorAll('input[type=range]').forEach(slider => {
+        slider.addEventListener('input', updateValues);
+    });
     updateValues();
     updatePumpInfo();
-    calculate();
 </script>
 
 </body>
