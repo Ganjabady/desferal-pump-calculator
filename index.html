@@ -1,1 +1,86 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاسبه‌گر پمپ دسفرال (Thalapump 20 Micrel)</title>
+    <style>
+        body { font-family: 'Tahoma', sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; text-align: center; }
+        .container { max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        label { display: block; margin: 10px 0 5px; font-weight: bold; }
+        input { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        button { background-color: #4CAF50; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; width: 100%; }
+        button:hover { background-color: #45a049; }
+        #result { margin-top: 20px; font-size: 18px; color: #333; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>محاسبه‌گر زمان تزریق پمپ دسفرال</h2>
+        <p>مدل: Thalapump 20 Micrel</p>
+        
+        <label for="speed">سرعت پمپ (mm/h):</label>
+        <input type="number" id="speed" min="1" step="0.1" placeholder="مثال: 6">
+        
+        <label for="length">طول سرنگ (mm):</label>
+        <input type="number" id="length" min="1" step="1" placeholder="مثال: 75">
+        
+        <label for="startTime">زمان شروع تزریق:</label>
+        <input type="time" id="startTime">
+        
+        <button onclick="calculate()">محاسبه</button>
+        
+        <div id="result"></div>
+    </div>
 
+    <script>
+        function calculate() {
+            const speed = parseFloat(document.getElementById('speed').value);
+            const length = parseFloat(document.getElementById('length').value);
+            const startTime = document.getElementById('startTime').value;
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = ''; // پاک کردن نتیجه قبلی
+
+            if (!speed || !length || !startTime) {
+                resultDiv.innerHTML = '<p class="error">لطفاً همه فیلدها را پر کنید.</p>';
+                return;
+            }
+            if (speed <= 0) {
+                resultDiv.innerHTML = '<p class="error">سرعت باید بیشتر از صفر باشد.</p>';
+                return;
+            }
+
+            // محاسبه زمان تزریق در ساعت (اعشاری)
+            const durationHours = length / speed;
+
+            // تبدیل به ساعت و دقیقه
+            const hours = Math.floor(durationHours);
+            const minutes = Math.round((durationHours - hours) * 60);
+
+            // محاسبه زمان پایان
+            const [startHour, startMinute] = startTime.split(':').map(Number);
+            let endHour = startHour + hours;
+            let endMinute = startMinute + minutes;
+
+            if (endMinute >= 60) {
+                endHour += Math.floor(endMinute / 60);
+                endMinute %= 60;
+            }
+            endHour %= 24; // مدیریت 24 ساعته
+
+            // فرمت زمان پایان (با AM/PM)
+            const ampm = endHour < 12 ? 'صبح' : 'عصر';
+            const formattedEndHour = endHour % 12 || 12; // 12 ساعته
+            const formattedEndMinute = endMinute.toString().padStart(2, '0');
+
+            // نمایش نتیجه
+            resultDiv.innerHTML = `
+                <p>زمان کل تزریق: ${hours} ساعت و ${minutes} دقیقه</p>
+                <p>زمان پایان: ساعت ${formattedEndHour}:${formattedEndMinute} ${ampm}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
